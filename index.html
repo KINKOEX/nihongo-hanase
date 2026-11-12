@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>にほんごで働く！ビジネス日本語30時間｜互動式課文音檔與同步字幕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Mobile Drawer Backdrop -->
+    <div id="sidebarBackdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+    <!-- Sidebar: Track List -->
+    <aside id="sidebar" class="sidebar" aria-label="課文音檔目錄">
+      <div class="sidebar-header">
+        <div class="brand">
+          <span class="brand-badge">Tracks 01–14</span>
+          <h1 class="brand-title">にほんごで働く！</h1>
+          <p class="brand-sub">ビジネス日本語30時間・互動聽讀</p>
+        </div>
+        <button id="closeSidebarBtn" class="icon-btn mobile-only" aria-label="關閉目錄">✕</button>
+      </div>
+
+      <div class="search-box">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="搜尋課文標題或關鍵字…"
+          aria-label="搜尋課文標題或關鍵字"
+        />
+      </div>
+
+      <div class="progress-summary">
+        <span id="completedCount">已完成 0 / 14 課</span>
+        <button id="resetProgressBtn" class="text-btn" title="清除學習紀錄">重設紀錄</button>
+      </div>
+
+      <nav id="trackList" class="track-list"></nav>
+    </aside>
+
+    <!-- Main Workspace -->
+    <div class="main-area">
+      <!-- Top Bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="openSidebarBtn" class="icon-btn mobile-only" aria-label="開啟課文目錄">☰</button>
+          <div class="lesson-meta">
+            <div class="lesson-badges">
+              <span id="trackBadge" class="badge badge-primary">Track 01</span>
+              <span id="categoryBadge" class="badge badge-secondary">基本練習</span>
+              <span id="unitLabel" class="unit-label">第 1 課｜初次見面・自我介紹</span>
+            </div>
+            <h2 id="lessonTitle" class="lesson-title">自己紹介する (1)</h2>
+            <p id="lessonTitleZh" class="lesson-title-zh">自我介紹 (1)</p>
+          </div>
+        </div>
+
+        <div class="topbar-controls">
+          <button id="toggleFuriganaBtn" class="pill-btn active" title="顯示或隱藏漢字假名標音">
+            <span class="pill-dot"></span>ふりがな
+          </button>
+          <button id="toggleZhBtn" class="pill-btn active" title="顯示或隱藏繁體中文翻譯">
+            <span class="pill-dot"></span>中文翻譯
+          </button>
+          <button id="toggleBlindBtn" class="pill-btn" title="盲聽練習：隱藏日文字幕，點擊單句可偷看">
+            <span class="pill-dot"></span>盲聽模式
+          </button>
+          <button id="toggleAutoScrollBtn" class="pill-btn active" title="播放時自動捲動到目前字幕">
+            <span class="pill-dot"></span>自動捲動
+          </button>
+          <button id="toggleThemeBtn" class="icon-btn" title="切換淺色 / 深色模式" aria-label="切換深色模式">🌙</button>
+        </div>
+      </header>
+
+      <!-- Section Quick-Jump Bar (for 例 / 1 / 2 / 3...) -->
+      <div id="sectionJumpBar" class="section-jump-bar" hidden>
+        <span class="jump-label">快速跳轉：</span>
+        <div id="sectionJumpPills" class="jump-pills"></div>
+      </div>
+
+      <!-- Subtitle Transcript Area -->
+      <main id="transcriptContainer" class="transcript-container" tabindex="0">
+        <div id="transcriptList" class="transcript-list"></div>
+      </main>
+
+      <!-- Sticky Bottom Audio Player -->
+      <footer class="player-bar">
+        <div class="scrubber-row">
+          <span id="currentTimeLabel" class="time-label">0:00</span>
+          <div class="scrubber-wrap">
+            <input
+              id="seekSlider"
+              type="range"
+              min="0"
+              max="100"
+              step="0.05"
+              value="0"
+              aria-label="播放進度條"
+            />
+          </div>
+          <span id="durationLabel" class="time-label">0:00</span>
+        </div>
+
+        <div class="controls-row">
+          <div class="controls-left">
+            <button id="prevTrackBtn" class="ctrl-btn" title="上一課 (↑)">⏮</button>
+            <button id="prevLineBtn" class="ctrl-btn" title="上一句 (←)">↩</button>
+            <button id="playPauseBtn" class="play-btn" title="播放 / 暫停 (Space)" aria-label="播放或暫停">▶</button>
+            <button id="nextLineBtn" class="ctrl-btn" title="下一句 (→)">↪</button>
+            <button id="nextTrackBtn" class="ctrl-btn" title="下一課 (↓)">⏭</button>
+          </div>
+
+          <div class="controls-center">
+            <button id="loopLineBtn" class="mode-btn" title="單句循環跟讀 (R)">
+              🔁 <span>單句循環</span>
+            </button>
+            <button id="autoNextBtn" class="mode-btn active" title="播完本課後自動播放下一課">
+              ⏩ <span>自動連播</span>
+            </button>
+          </div>
+
+          <div class="controls-right">
+            <label class="speed-control" title="調整語速">
+              <span>語速</span>
+              <select id="speedSelect" aria-label="播放速度">
+                <option value="0.75">0.75×</option>
+                <option value="0.85">0.85×</option>
+                <option value="1" selected>1.0×</option>
+                <option value="1.15">1.15×</option>
+                <option value="1.25">1.25×</option>
+              </select>
+            </label>
+
+            <div class="volume-control" title="音量調整">
+              <span class="vol-icon">🔊</span>
+              <input id="volumeSlider" type="range" min="0" max="1" step="0.05" value="1" aria-label="音量" />
+            </div>
+          </div>
+        </div>
+
+        <div class="shortcut-hint">
+          快捷鍵：<kbd>Space</kbd> 播放/暫停 ・ <kbd>←</kbd><kbd>→</kbd> 上/下一句 ・ <kbd>↑</kbd><kbd>↓</kbd> 上/下一課 ・ <kbd>R</kbd> 單句循環
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <audio id="audioEl" preload="metadata"></audio>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
