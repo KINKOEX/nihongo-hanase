@@ -39,6 +39,31 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+.line-card {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+button:focus,
+button:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+.line-card:focus:not(:focus-visible) {
+  outline: none;
+}
+
+button:focus-visible,
+select:focus-visible,
+.line-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 html, body {
@@ -144,9 +169,11 @@ html, body {
   font-family: inherit;
 }
 
-.text-btn:hover {
-  color: var(--accent);
-  background: var(--bg-surface-alt);
+@media (hover: hover) {
+  .text-btn:hover {
+    color: var(--accent);
+    background: var(--bg-surface-alt);
+  }
 }
 
 .track-list {
@@ -180,8 +207,10 @@ html, body {
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
-.track-item:hover {
-  background: var(--bg-surface-alt);
+@media (hover: hover) {
+  .track-item:hover {
+    background: var(--bg-surface-alt);
+  }
 }
 
 .track-item.active {
@@ -350,8 +379,10 @@ html, body {
   transition: all 0.15s ease;
 }
 
-.pill-btn:hover {
-  background: var(--bg-surface-alt);
+@media (hover: hover) {
+  .pill-btn:hover {
+    background: var(--bg-surface-alt);
+  }
 }
 
 .pill-btn.active {
@@ -386,8 +417,10 @@ html, body {
   font-size: 15px;
 }
 
-.icon-btn:hover {
-  background: var(--bg-surface-alt);
+@media (hover: hover) {
+  .icon-btn:hover {
+    background: var(--bg-surface-alt);
+  }
 }
 
 /* Section Jump Bar */
@@ -425,9 +458,11 @@ html, body {
   white-space: nowrap;
 }
 
-.jump-pill:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+@media (hover: hover) {
+  .jump-pill:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
 }
 
 /* Transcript */
@@ -462,9 +497,11 @@ html, body {
   transition: transform 0.12s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
 
-.line-card:hover {
-  border-color: rgba(29, 78, 216, 0.35);
-  box-shadow: var(--shadow-md);
+@media (hover: hover) {
+  .line-card:hover {
+    border-color: rgba(29, 78, 216, 0.35);
+    box-shadow: var(--shadow-md);
+  }
 }
 
 .line-card.is-header {
@@ -587,8 +624,10 @@ html, body {
   user-select: none;
 }
 
-.blind-mode .line-card:not(.is-header):not(.revealed):hover .line-ja {
-  opacity: 0.55;
+@media (hover: hover) {
+  .blind-mode .line-card:not(.is-header):not(.revealed):hover .line-ja {
+    opacity: 0.55;
+  }
 }
 
 .line-actions {
@@ -612,9 +651,11 @@ html, body {
   transition: all 0.15s ease;
 }
 
-.line-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+@media (hover: hover) {
+  .line-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
 }
 
 .line-btn.active {
@@ -702,8 +743,10 @@ html, body {
   transition: background 0.15s ease;
 }
 
-.ctrl-btn:hover {
-  background: var(--bg-surface-alt);
+@media (hover: hover) {
+  .ctrl-btn:hover {
+    background: var(--bg-surface-alt);
+  }
 }
 
 .play-btn {
@@ -722,8 +765,10 @@ html, body {
   transition: transform 0.1s ease, opacity 0.15s ease;
 }
 
-.play-btn:hover {
-  opacity: 0.92;
+@media (hover: hover) {
+  .play-btn:hover {
+    opacity: 0.92;
+  }
 }
 
 .play-btn:active {
@@ -850,7 +895,15 @@ html, body {
 
   .topbar-left {
     width: 100%;
-    gap: 10px;
+    gap: 12px;
+  }
+
+  #openSidebarBtn {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    border-radius: 10px;
+    flex-shrink: 0;
   }
 
   .lesson-badges {
@@ -935,6 +988,13 @@ html, body {
     gap: 6px;
   }
 
+  #prevTrackBtn,
+  #nextTrackBtn,
+  #prevLineBtn,
+  #nextLineBtn {
+    display: none;
+  }
+
   .ctrl-btn {
     width: 32px;
     height: 32px;
@@ -942,9 +1002,9 @@ html, body {
   }
 
   .play-btn {
-    width: 38px;
-    height: 38px;
-    font-size: 15px;
+    width: 50px;
+    height: 50px;
+    font-size: 19px;
   }
 
   .controls-center,

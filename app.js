@@ -670,6 +670,13 @@
   closeSidebarBtn.addEventListener("click", closeSidebar);
   sidebarBackdrop.addEventListener("click", closeSidebar);
 
+  document.addEventListener("click", (e) => {
+    if (e.detail > 0) {
+      const btn = e.target && e.target.closest && e.target.closest("button");
+      if (btn) btn.blur();
+    }
+  });
+
   document.addEventListener("keydown", (e) => {
     const tag = (e.target && e.target.tagName) || "";
     if (["INPUT", "SELECT", "TEXTAREA"].includes(tag)) return;
